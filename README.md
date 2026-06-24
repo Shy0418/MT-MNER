@@ -13,9 +13,8 @@ Input: Text + Image
     │   └── Faster R-CNN → Local Visual Features (f_L)
     │
     ├── Multi-view Contrastive Learning
-    │   ├── T2G: Text ↔ Global Visual alignment
-    │   ├── T2L: Text ↔ Local Visual alignment
-    │   └── G2L: Global Visual ↔ Local Visual alignment
+    │   ├── Text ↔ Global visual alignment
+    │   └── token ↔ patch alignment
     │
     ├── Two-stage Feature Fusion
     │   ├── Hierarchical Fusion (3× CAM + 2× GFM)
