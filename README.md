@@ -8,9 +8,9 @@ Implementation of **MT-MNER: A Multimodal Named Entity Recognition Model Based o
 Input: Text + Image
     │
     ├── Feature Extraction
-    │   ├── RoBERTa → Text Features (f_T)
-    │   ├── ViT → Global Visual Features (f_G)
-    │   └── Faster R-CNN → Local Visual Features (f_L)
+    │   ├── RoBERTa → Text Features
+    │   ├── ViT → Local Visual Features
+    │   └── ResNet-50 → Global Visual Features
     │
     ├── Multi-view Contrastive Learning
     │   ├── Text ↔ Global visual alignment
@@ -41,29 +41,6 @@ MT-MNER/
 ├── requirements.txt   # Dependencies
 └── README.md         # This file
 ```
-
-## Key Components
-
-### 1. Feature Extraction
-- **Text**: RoBERTa-base (first 5 layers frozen)
-- **Global Visual**: ViT-base-patch16-224 with mean pooling
-- **Local Visual**: ResNet-50 backbone with ROI pooling (16 regions)
-
-### 2. Multi-view Contrastive Learning
-- Three contrastive pairs: T2G, T2L, G2L
-- InfoNCE loss with temperature τ = 0.1
-- Projects features into unified semantic space
-
-### 3. Two-stage Feature Fusion
-- **Hierarchical Fusion**: 3 Cross-Attention Modules + 2 Gated Fusion Modules
-  - Step 1: Surface-aware perception (f₁)
-  - Step 2: Semantic alignment (f₂)
-  - Step 3: Deep understanding (f₃)
-- **Global Fusion**: Attention-based calibration + MLP aggregation
-
-### 4. Prediction
-- Linear classifier + CRF decoding
-- BIO tagging scheme (PER, LOC, ORG, MISC)
 
 ## Usage
 
@@ -111,9 +88,3 @@ Expected JSON format for Twitter-2015/2017:
 
 ## Citation
 
-```bibtex
-@article{han2025mtmner,
-    title={MT-MNER: A Multimodal Named Entity Recognition Model Based on Multi-View Contrastive Learning and Two-Stage Feature Fusion},
-    author={Han, Mingxing and Li, Jiaxuan and Xu, Liwei},
-    year={2025}
-}
